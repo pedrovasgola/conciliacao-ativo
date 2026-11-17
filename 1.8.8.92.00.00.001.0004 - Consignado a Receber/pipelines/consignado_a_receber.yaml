@@ -1,0 +1,17 @@
+# Consignado a Receber.
+# O Função entra em entrada/ ou em --funcao. O SQL é SE5010 com SE1010.
+# As dez classes do MOVIMENTO não se agrupam.
+
+id: consignado_a_receber
+nome: "Conciliação - Consignado a Receber"
+empresa: Banco Senff
+
+parametros:
+  filial: "030101"
+  natureza: "1010079"
+  conta_sinqia: "1.8.8.92.00.00.001.0004"
+  descricao: "Consignado a Receber"
+  tolerancia: 0.01
+  referencia_funcao: 2012790.65
+  referencia_sql: -4380792.31
+  referencia_diferenca: -2368001.66

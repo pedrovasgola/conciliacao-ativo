@@ -1,0 +1,54 @@
+# Ted/Doc outras instituições.
+# Cada item de fontes é um script da pasta scripts.
+# Outra conciliação repete estes ids e acrescenta os scripts dela.
+# sinqia_cc_razao é opcional: a conciliação roda sem ele até o SELECT ser colado.
+
+id: teddoc_outras_instituicoes
+nome: Conciliação - Transitoria Cash Back
+empresa: Banco Senff
+
+parametros:
+  filial: "030101"
+  instituicao: "1414"
+  agencia: "19"
+  plano: "3"
+
+fontes:
+  - script: protheus_ct2_razao
+    aba: WP-02 Protheus
+    resumo: Razão financeiro do Protheus (CT2). Toda linha em que a conta está no débito ou no crédito.
+    parametros:
+      filial: "${filial}"
+      conta: "11030101063"
+  - script: sinqia_ct_razao
+    aba: WP-03 Sinqia CT
+    resumo: Razão contábil da conta na Sinqia. Débito menos crédito.
+    parametros:
+      instituicao: "${instituicao}"
+      agencia: "${agencia}"
+      plano: "${plano}"
+      conta: "1886599000020011"
+  - script: sinqia_ct_balancete
+    aba: WP-05 Balancete
+    resumo: Saldo anterior da Sinqia, antes da data inicial. Entra no saldo do dia 01 da capa.
+    parametros:
+      instituicao: "${instituicao}"
+      agencia: "${agencia}"
+      plano: "${plano}"
+      conta: "1886599000020011"
+  - script: sinqia_cc_razao
+    aba: WP-04 Sinqia CC
+    resumo: Movimento de conta corrente na Sinqia. Entra na composição dos dias que não fecham.
+    opcional: true
+    parametros:
+      instituicao: "${instituicao}"
+      conta: "1886599000020011"
+
+conciliacao:
+  # Sinqia é o saldo contábil. Protheus é o financeiro.
+  esquerda: sinqia_ct_razao
+  direita: protheus_ct2_razao
+  detalhe: sinqia_cc_razao
+  # Os dois lados já vêm com sinais opostos. A diferença do dia é a soma.
+  operacao: soma
+  tolerancia: 0.01

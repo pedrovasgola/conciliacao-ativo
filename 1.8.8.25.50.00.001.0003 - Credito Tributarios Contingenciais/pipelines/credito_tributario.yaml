@@ -1,0 +1,19 @@
+# Crédito tributário sobre prejuízo fiscal.
+# O mês só muda nas datas. As contas ficam aqui.
+
+id: credito_tributario
+nome: "Conciliação - Crédito Tributário"
+empresa: Banco Senff
+
+parametros:
+  filial: "030101"
+  instituicao: "1414"
+  agencia: "19"
+  plano: "3"
+  conta: "11030401018"
+  descricao: "Credito Tributario sobre Prejuizo Fiscal"
+  contra_irpj: "35010201004"
+  contra_csll: "35010101004"
+  sinqia_irpj: "8941030000010002"
+  sinqia_csll: "8942030000010002"
+  tolerancia: 0.01
